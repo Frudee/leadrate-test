@@ -1,0 +1,116 @@
+.card {
+  width: 420px;
+  height: 580px;
+  padding: 30px;
+  background: $primary-color;
+  box-shadow: 0px 14px 34px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  margin-bottom: 30px;
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h1 {
+      font-size: 28px;
+      line-height: 34px;
+      color: #fff;
+    }
+    button {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 7px;
+      background: $highlight;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #d95133;
+    }
+  }
+  ul {
+    padding: 30px 0;
+    list-style: none;
+  }
+  li {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+  }
+  label {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+    input:checked ~ .checkmark {
+      background-color: $highlight;
+    }
+    input:checked ~ .checkmark::after {
+      display: block;
+    }
+    input:checked ~ .test {
+      color: $secondary-color;
+    }
+    // &:hover input ~ .checkmark::after {
+    //   display: block;
+    // }
+    &:hover input:not(:checked) ~ .checkmark {
+      background: rgba(255, 132, 105, 0.2);
+    }
+    &:hover input:checked ~ span {
+      text-decoration: line-through;
+    }
+    &:hover input:checked ~ .test {
+      text-decoration: line-through;
+      color: #fff;
+    }
+
+    span {
+      padding-top: 3px;
+      font-size: 12px;
+      color: $secondary-color;
+    }
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #4f5565;
+    border-radius: 6px;
+    &::after {
+      content: "";
+      position: absolute;
+      display: none;
+      left: 6px;
+      top: 2px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      -webkit-transform: rotate(40deg);
+      -ms-transform: rotate(40deg);
+      transform: rotate(40deg);
+    }
+  }
+}
