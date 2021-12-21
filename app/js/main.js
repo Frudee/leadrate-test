@@ -1,10 +1,10 @@
 const container = document.querySelector(".list");
 let q = 5;
-function getRandomIntInclusive(min, max) {
+const getRandomIntInclusive = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
 
 const data = fetch("https://jsonplaceholder.typicode.com/todos")
   .then((response) => response.json())
