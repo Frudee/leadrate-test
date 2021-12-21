@@ -14,9 +14,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   background: $background-color;
+  position: relative;
+  z-index: 1;
   .crt {
     color: $secondary-color;
+  }
+}
+
+@media (max-width: 428px) {
+  .container {
+    padding: 0 16px;
   }
 }
