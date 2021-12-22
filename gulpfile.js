@@ -27,15 +27,13 @@ const styles = () => {
     autoprefixer({ browsers: ["last 8 version"], grid: true }),
     cssnano(),
   ];
-  return (
-    src("app/scss/style.scss")
-      .pipe(scss({ outputStyle: "compressed" }))
-      // .pipe(postcss(plugins))
-      .pipe(concat("style.min.css"))
-      // .pipe(gcmq())
-      .pipe(dest("app/css"))
-      .pipe(browserSync.reload({ stream: true }))
-  );
+  return src("app/scss/style.scss")
+    .pipe(scss({ outputStyle: "compressed" }))
+    .pipe(postcss(plugins))
+    .pipe(concat("style.min.css"))
+    .pipe(gcmq())
+    .pipe(dest("app/css"))
+    .pipe(browserSync.reload({ stream: true }));
 };
 
 // JavaScript
