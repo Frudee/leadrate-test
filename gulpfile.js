@@ -6,7 +6,11 @@ const browserSync = require("browser-sync").create();
 const uglify = require("gulp-uglify-es").default;
 const imagemin = require("gulp-imagemin");
 const pug = require("gulp-pug");
-
+const postcss = require("gulp-postcss");
+const autoprefixer = require("autoprefixer");
+const cssnano = require("cssnano");
+const gcmq = require("gulp-group-css-media-queries");
+const del = require("del");
 // Pug
 
 const pugTemplate = () => {
@@ -19,11 +23,19 @@ const pugTemplate = () => {
 // SCSS
 
 const styles = () => {
-  return src("app/scss/style.scss")
-    .pipe(scss({ outputStyle: "compressed" }))
-    .pipe(concat("style.min.css"))
-    .pipe(dest("app/css"))
-    .pipe(browserSync.reload({ stream: true }));
+  let plugins = [
+    autoprefixer({ browsers: ["last 8 version"], grid: true }),
+    cssnano(),
+  ];
+  return (
+    src("app/scss/style.scss")
+      .pipe(scss({ outputStyle: "compressed" }))
+      // .pipe(postcss(plugins))
+      .pipe(concat("style.min.css"))
+      // .pipe(gcmq())
+      .pipe(dest("app/css"))
+      .pipe(browserSync.reload({ stream: true }))
+  );
 };
 
 // JavaScript
